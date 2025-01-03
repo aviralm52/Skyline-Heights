@@ -1,11 +1,11 @@
-import { useFonts } from "expo-font";
 import { useEffect } from "react";
+import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 
 import "./global.css";
+import GlobalProvider from "@/lib/global-provider";
 
 export default function RootLayout() {
-
   const [fontLoaded] = useFonts({
     "Rubik-Bold": require("../assets/fonts/Rubik-Bold.ttf"),
     "Rubik-ExtraBold": require("../assets/fonts/Rubik-ExtraBold.ttf"),
@@ -13,7 +13,7 @@ export default function RootLayout() {
     "Rubik-Medium": require("../assets/fonts/Rubik-Medium.ttf"),
     "Rubik-Regular": require("../assets/fonts/Rubik-Regular.ttf"),
     "Rubik-Semibold": require("../assets/fonts/Rubik-SemiBold.ttf"),
-  })
+  });
 
   useEffect(() => {
     if (fontLoaded) {
@@ -23,8 +23,11 @@ export default function RootLayout() {
 
   if (!fontLoaded) return null;
 
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <GlobalProvider>
+      <Stack screenOptions={{ headerShown: false }} />;
+    </GlobalProvider>
+  );
 }
-
 
 // screenOptions={{ headerShown: false }} --> hide header
