@@ -48,7 +48,6 @@ const SettingsItem = ({
 
 const Profile = () => {
   const { user, refetch } = useGlobalContext();
-  console.log("user in profile: ", user);
 
   const handleLogout = async () => {
     const result = await logout();
@@ -73,7 +72,7 @@ const Profile = () => {
         <View className=" flex-row justify-center flex mt-5">
           <View className=" flex flex-col items-center relative mt-5">
             <Image
-              source={images.avatar2}
+              source={{ uri: user?.avatar }}
               //   source={{ uri: user?.avatar }}
               className=" size-44 relative rounded-full"
             />
